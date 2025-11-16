@@ -1,39 +1,43 @@
-require('dotenv').config();
-const Hapi = require('@hapi/hapi');
-const connectDB = require('./config/db');
-const Inert = require('@hapi/inert');
-const Vision = require('@hapi/vision');
-const HapiSwagger = require('hapi-swagger');
-const Pack = require('./package.json');
+import 'dotenv/config';
+import Hapi from '@hapi/hapi';
+import connectDB from './config/db.js';
+import userRoutes from './routes/userRoutes.js';
+import Inert from '@hapi/inert';
+import Vision from '@hapi/vision';
+import HapiSwagger from 'hapi-swagger';
+import pkg from './package.json' with { type: 'json' };
 
-await server.register([
-  Inert,
-  Vision,
-  {
-    plugin: HapiSwagger,
-    options: {
-      info: {
-        title: 'Sendspark API',
-        version: Pack.version
-      }
-    }
+const swaggerOptions = {
+  info: {
+    title: 'Sendspark API',
+    version: pkg.version
   }
-]);
+};
 
+const server = Hapi.server({
+  port: 3000,
+  host: 'localhost'
+});
 
-// Connects to the database and starts the server
-const init = async () => {
+const startServer = async () => {
+  // Connects to MongoDB
   await connectDB();
-  const server = Hapi.server({
-    port: 3000,
-    host: 'localhost'
-  });
 
-  // Load routes
-  server.route(require('./routes/userRoutes'));
+  // Register swagger plugins
+  await server.register([
+    Inert,
+    Vision,
+    {
+      plugin: HapiSwagger,
+      options: swaggerOptions
+    }
+  ]);
+
+  // Register routes
+  server.route(userRoutes);
 
   await server.start();
   console.log(`Server running on ${server.info.uri}`);
 };
 
-init();
+startServer();
