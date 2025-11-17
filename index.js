@@ -3,7 +3,6 @@ import Hapi from '@hapi/hapi';
 import connectDB from './config/db.js';
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
-server.route(authRoutes);
 import Inert from '@hapi/inert';
 import Vision from '@hapi/vision';
 import HapiSwagger from 'hapi-swagger';
@@ -37,6 +36,7 @@ const startServer = async () => {
 
   // Register routes
   server.route(userRoutes);
+  server.route(authRoutes);
 
   await server.start();
   console.log(`Server running on ${server.info.uri}`);
