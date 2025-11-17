@@ -1,4 +1,4 @@
-import { createUser, listUsers } from '../controllers/userController.js';
+import { createUser, listUsers, updateUser, deleteUser } from '../controllers/userController.js';
 import { userSchema } from '../middlewares/validators.js';
 
 const userRoutes = [
@@ -47,6 +47,26 @@ const userRoutes = [
       auth: 'jwt'
     },
     handler: listUsers,
+  },
+  {
+    method: 'PUT',
+    path: '/users/{id}',
+    options: {
+      description: 'Update user by id',
+      tags: ['api', 'users'],
+      auth: 'jwt'
+    },
+    handler: updateUser
+  },
+  {
+    method: 'DELETE',
+    path: '/users/{id}',
+    options: {
+      description: 'Delete user by id',
+      tags: ['api', 'users'],
+      auth: 'jwt'
+    },
+    handler: deleteUser
   }
 ];
 
