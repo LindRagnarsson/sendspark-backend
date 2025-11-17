@@ -1,4 +1,4 @@
-import { createUser } from '../controllers/userController.js';
+import { createUser, listUsers } from '../controllers/userController.js';
 import { userSchema } from '../middlewares/validators.js';
 
 const userRoutes = [
@@ -8,7 +8,7 @@ const userRoutes = [
     options: {
       description: 'Register a new user',
       notes: 'Creates a user and returns their data without password.',
-      tags: ['api', 'users'], // <--- "api" tag for swagger
+      tags: ['api', 'users'],
       validate: { payload: userSchema },
       plugins: {
         'hapi-swagger': {
@@ -16,7 +16,7 @@ const userRoutes = [
           responses: {
             201: {
               description: 'User created',
-              schema: userSchema, // Reference to the user schema
+              schema: userSchema,
             },
             400: {
               description: 'Validation or duplicate email error'
@@ -34,9 +34,20 @@ const userRoutes = [
           }
         }
       }
-      // ...
     },
     handler: createUser,
+  },
+  {
+    method: 'GET',
+    path: '/users',
+    options: {
+      description: 'Get all users (paginated)',
+      notes: 'Requires JWT. Use ?page=1&limit=50',
+      tags: ['api', 'users'],
+      auth: 'jwt'
+    },
+    handler: listUsers,
   }
 ];
+
 export default userRoutes;
