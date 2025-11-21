@@ -11,3 +11,12 @@ export const userSchema = Joi.object({
     .pattern(/\d/)
     .required()
 });
+
+export const updatePasswordSchema = Joi.object({
+  currentPassword: Joi.string().required(),
+  newPassword: Joi.string().min(8)
+    .pattern(/[A-Z]/)
+    .pattern(/[a-z]/)
+    .pattern(/\d/)
+    .required()
+});

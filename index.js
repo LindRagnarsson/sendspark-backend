@@ -16,6 +16,15 @@ const swaggerOptions = {
     title: 'Sendspark API',
     version: pkg.version,
   },
+  securityDefinitions: {
+    jwt: {
+      type: 'apiKey',
+      name: 'Authorization',
+      in: 'header',
+      description: 'Enter JWT token. Format: Bearer <token>'
+    }
+  },
+  security: [{ jwt: [] }]
 };
 
 const validate = async function (decoded, request, h) {
@@ -27,8 +36,8 @@ const validate = async function (decoded, request, h) {
     if (!user) {
       return { isValid: false };
     }
-    // User exists, valid token
-    return { isValid: true };
+    // User exists, valid token - return credentials with user id
+    return { isValid: true, credentials: { id: decoded.id } };
   } catch (err) {
     // In case of error invalidate token
     return { isValid: false };
