@@ -1,6 +1,6 @@
 import { createUser, listUsers, updateUser, deleteUser } from '../controllers/userController.js';
 import { updatePassword } from '../controllers/authController.js';
-import { userSchema, updatePasswordSchema } from '../middlewares/validators.js';
+import { userSchema, updatePasswordSchema, updateUserSchema } from '../middlewares/validators.js';
 import Joi from 'joi';
 
 const userRoutes = [
@@ -60,7 +60,8 @@ const userRoutes = [
       validate: {
         params: Joi.object({
           id: Joi.string().required().description('the user id')
-        })
+        }),
+        payload: updateUserSchema
       }
     },
     handler: updateUser
