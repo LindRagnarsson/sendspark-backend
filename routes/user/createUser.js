@@ -1,5 +1,5 @@
 import { createUser } from '../../controllers/user/createUser.js';
-import { userSchema } from '../../middlewares/validators.js';
+import userSchema from './schemas/createUserSchema.js';
 
 const createUserRoute = {
     method: 'POST',

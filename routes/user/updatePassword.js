@@ -1,5 +1,5 @@
 import { updatePassword } from '../../controllers/user/updatePassword.js';
-import { updatePasswordSchema } from '../../middlewares/validators.js';
+import updatePasswordSchema from './schemas/updatePasswordSchema.js';
 import Joi from 'joi';
 
 const updatePasswordRoute = {

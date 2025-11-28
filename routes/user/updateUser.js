@@ -1,5 +1,5 @@
 import { updateUser } from '../../controllers/user/updateUser.js';
-import { updateUserSchema } from '../../middlewares/validators.js';
+import updateUserSchema from './schemas/updateUserSchema.js';
 import Joi from 'joi';
 
 const updateUserRoute = {
