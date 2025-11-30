@@ -1,4 +1,4 @@
-import { deleteUser } from '../../controllers/user/deleteUser.Controller.js';
+import deleteUserController from '../../controllers/user/deleteUser.Controller.js';
 import { deleteUserParams, deleteUserResponse } from './schemas/deleteUser.Schema.js';
 
 const deleteUserRoute = {
@@ -18,7 +18,7 @@ const deleteUserRoute = {
             }
         }
     },
-    handler: deleteUser
+    handler: deleteUserController.handle
 };
 
 export default deleteUserRoute;

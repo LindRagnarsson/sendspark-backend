@@ -1,4 +1,4 @@
-import { updateUser } from '../../controllers/user/updateUser.Controller.js';
+import updateUserController from '../../controllers/user/updateUser.Controller.js';
 import { updateUserParams, updateUserPayload, updateUserResponse } from './schemas/updateUser.Schema.js';
 
 const updateUserRoute = {
@@ -19,7 +19,7 @@ const updateUserRoute = {
             }
         }
     },
-    handler: updateUser
+    handler: updateUserController.handle
 };
 
 export default updateUserRoute;

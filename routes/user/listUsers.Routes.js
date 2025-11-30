@@ -1,4 +1,4 @@
-import { listUsers } from '../../controllers/user/listUsers.Controller.js';
+import listUsersController from '../../controllers/user/listUsers.Controller.js';
 import { listUsersQuery, listUsersResponse } from './schemas/listUsers.Schema.js';
 
 const listUsersRoute = {
@@ -19,7 +19,7 @@ const listUsersRoute = {
             }
         }
     },
-    handler: listUsers,
+    handler: listUsersController.handle,
 };
 
 export default listUsersRoute;

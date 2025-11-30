@@ -1,4 +1,4 @@
-import { login } from '../../controllers/auth/login.Controller.js';
+import loginController from '../../controllers/auth/login.Controller.js';
 import { loginPayload, loginResponse } from './schemas/login.Schema.js';
 
 const loginRoute = {
@@ -23,7 +23,7 @@ const loginRoute = {
             }
         }
     },
-    handler: login,
+    handler: loginController.handle,
 };
 
 export default loginRoute;

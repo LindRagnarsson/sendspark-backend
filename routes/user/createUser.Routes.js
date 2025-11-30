@@ -1,4 +1,4 @@
-import { createUser } from '../../controllers/user/createUser.Controller.js';
+import createUserController from '../../controllers/user/createUser.Controller.js';
 import { createUserPayload, createUserResponse } from './schemas/createUser.Schema.js';
 
 const createUserRoute = {
@@ -26,7 +26,7 @@ const createUserRoute = {
             }
         }
     },
-    handler: createUser,
+    handler: createUserController.handle,
 };
 
 export default createUserRoute;

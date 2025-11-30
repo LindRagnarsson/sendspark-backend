@@ -1,4 +1,4 @@
-import { updatePassword } from '../../controllers/user/updatePassword.Controller.js';
+import updatePasswordController from '../../controllers/user/updatePassword.Controller.js';
 import { updatePasswordPayload, updatePasswordResponse } from './schemas/updatePassword.Schema.js';
 
 const updatePasswordRoute = {
@@ -24,7 +24,7 @@ const updatePasswordRoute = {
             }
         }
     },
-    handler: updatePassword
+    handler: updatePasswordController.handle
 };
 
 export default updatePasswordRoute;
