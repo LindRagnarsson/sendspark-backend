@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { notFoundSchema, serverErrorSchema } from '../../shared/schemas/httpCodes.Schema.js';
 
 export const updateUserParams = Joi.object({
     id: Joi.string().required().description('the user id')
@@ -18,10 +19,6 @@ export const updateUserResponse = {
             user: Joi.object().label('User')
         })
     },
-    404: {
-        description: 'User not found'
-    },
-    500: {
-        description: 'Server error'
-    }
+    404: notFoundSchema,
+    500: serverErrorSchema
 };

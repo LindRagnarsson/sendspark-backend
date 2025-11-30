@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { unauthorizedSchema, serverErrorSchema } from '../../shared/schemas/httpCodes.Schema.js';
 
 export const loginPayload = Joi.object({
     workEmail: Joi.string().email().required(),
@@ -12,10 +13,6 @@ export const loginResponse = {
             token: Joi.string().example('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...')
         })
     },
-    401: {
-        description: 'Invalid email or password'
-    },
-    500: {
-        description: 'Server error'
-    }
+    401: unauthorizedSchema,
+    500: serverErrorSchema
 };

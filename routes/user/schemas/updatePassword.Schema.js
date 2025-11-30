@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { badRequestSchema, unauthorizedSchema, notFoundSchema, serverErrorSchema } from '../../shared/schemas/httpCodes.Schema.js';
 
 export const updatePasswordPayload = Joi.object({
     currentPassword: Joi.string().required(),
@@ -16,16 +17,8 @@ export const updatePasswordResponse = {
             message: Joi.string().example('Password updated successfully')
         })
     },
-    400: {
-        description: 'Invalid Payload'
-    },
-    401: {
-        description: 'Invalid current password or unauthorized'
-    },
-    404: {
-        description: 'User not found'
-    },
-    500: {
-        description: 'Server error'
-    }
+    400: badRequestSchema,
+    401: unauthorizedSchema,
+    404: notFoundSchema,
+    500: serverErrorSchema
 };

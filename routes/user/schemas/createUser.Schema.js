@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { badRequestSchema, serverErrorSchema } from '../../shared/schemas/httpCodes.Schema.js';
 
 export const createUserPayload = Joi.object({
   firstName: Joi.string().max(120).required(),
@@ -18,10 +19,6 @@ export const createUserResponse = {
     description: 'User created',
     schema: createUserPayload,
   },
-  400: {
-    description: 'Validation or duplicate email error'
-  },
-  500: {
-    description: 'Server error'
-  }
+  400: badRequestSchema,
+  500: serverErrorSchema
 };

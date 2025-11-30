@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { serverErrorSchema } from '../../shared/schemas/httpCodes.Schema.js';
 
 export const listUsersQuery = Joi.object({
     page: Joi.number().integer().min(1).default(1),
@@ -17,7 +18,5 @@ export const listUsersResponse = {
             }).label('Pagination')
         })
     },
-    500: {
-        description: 'Server error'
-    }
+    500: serverErrorSchema
 };
