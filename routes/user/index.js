@@ -1,8 +1,8 @@
-import createUserRoute from './createUser.js';
-import listUsersRoute from './listUsers.js';
-import updateUserRoute from './updateUser.js';
-import deleteUserRoute from './deleteUser.js';
-import updatePasswordRoute from './updatePassword.js';
+import createUserRoute from './createUser.Routes.js';
+import listUsersRoute from './listUsers.Routes.js';
+import updateUserRoute from './updateUser.Routes.js';
+import deleteUserRoute from './deleteUser.Routes.js';
+import updatePasswordRoute from './updatePassword.Routes.js';
 
 const userRoutes = [
     createUserRoute,

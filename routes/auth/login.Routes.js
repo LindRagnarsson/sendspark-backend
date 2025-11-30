@@ -1,4 +1,4 @@
-import { login } from '../../controllers/auth/login.js';
+import { login } from '../../controllers/auth/login.Controller.js';
 import loginSchema from './schemas/loginSchema.js';
 import Joi from 'joi';
 

@@ -1,4 +1,4 @@
-import { updatePassword } from '../../controllers/user/updatePassword.js';
+import { updatePassword } from '../../controllers/user/updatePassword.Controller.js';
 import updatePasswordSchema from './schemas/updatePasswordSchema.js';
 import Joi from 'joi';
 

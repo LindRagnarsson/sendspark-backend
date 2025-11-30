@@ -1,4 +1,4 @@
-import { listUsers } from '../../controllers/user/listUsers.js';
+import { listUsers } from '../../controllers/user/listUsers.Controller.js';
 
 const listUsersRoute = {
     method: 'GET',

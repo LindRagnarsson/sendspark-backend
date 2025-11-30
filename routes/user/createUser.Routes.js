@@ -1,4 +1,4 @@
-import { createUser } from '../../controllers/user/createUser.js';
+import { createUser } from '../../controllers/user/createUser.Controller.js';
 import userSchema from './schemas/createUserSchema.js';
 
 const createUserRoute = {

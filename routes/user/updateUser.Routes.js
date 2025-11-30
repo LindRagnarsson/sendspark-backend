@@ -1,4 +1,4 @@
-import { updateUser } from '../../controllers/user/updateUser.js';
+import { updateUser } from '../../controllers/user/updateUser.Controller.js';
 import updateUserSchema from './schemas/updateUserSchema.js';
 import Joi from 'joi';
 

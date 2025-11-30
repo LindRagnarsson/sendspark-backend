@@ -1,4 +1,4 @@
-import { deleteUser } from '../../controllers/user/deleteUser.js';
+import { deleteUser } from '../../controllers/user/deleteUser.Controller.js';
 import Joi from 'joi';
 
 const deleteUserRoute = {

@@ -1,4 +1,4 @@
-import loginRoute from './login.js';
+import loginRoute from './login.Routes.js';
 
 const authRoutes = [
     loginRoute
