@@ -19,6 +19,9 @@ const createUserRoute = {
                     },
                     400: {
                         description: 'Validation or duplicate email error'
+                    },
+                    500: {
+                        description: 'Server error'
                     }
                 },
                 examples: {

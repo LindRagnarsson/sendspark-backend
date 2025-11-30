@@ -23,6 +23,9 @@ const loginRoute = {
                     },
                     401: {
                         description: 'Invalid email or password'
+                    },
+                    500: {
+                        description: 'Server error'
                     }
                 },
                 examples: {

@@ -14,6 +14,25 @@ const updateUserRoute = {
                 id: Joi.string().required().description('the user id')
             }),
             payload: updateUserSchema
+        },
+        plugins: {
+            'hapi-swagger': {
+                payloadType: 'json',
+                responses: {
+                    200: {
+                        description: 'User updated',
+                        schema: Joi.object({
+                            user: Joi.object().label('User')
+                        })
+                    },
+                    404: {
+                        description: 'User not found'
+                    },
+                    500: {
+                        description: 'Server error'
+                    }
+                }
+            }
         }
     },
     handler: updateUser
