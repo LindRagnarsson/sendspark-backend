@@ -1,5 +1,5 @@
 import { createUser } from '../../controllers/user/createUser.Controller.js';
-import userSchema from './schemas/createUserSchema.js';
+import { createUserPayload, createUserResponse } from './schemas/createUser.Schema.js';
 
 const createUserRoute = {
     method: 'POST',
@@ -8,22 +8,11 @@ const createUserRoute = {
         description: 'Register a new user',
         notes: 'Creates a user and returns their data without password.',
         tags: ['api', 'users'],
-        validate: { payload: userSchema },
+        validate: { payload: createUserPayload },
         plugins: {
             'hapi-swagger': {
                 payloadType: 'json',
-                responses: {
-                    201: {
-                        description: 'User created',
-                        schema: userSchema,
-                    },
-                    400: {
-                        description: 'Validation or duplicate email error'
-                    },
-                    500: {
-                        description: 'Server error'
-                    }
-                },
+                responses: createUserResponse,
                 examples: {
                     'application/json': {
                         firstName: 'Nuno',

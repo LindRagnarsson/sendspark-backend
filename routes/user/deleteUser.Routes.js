@@ -1,5 +1,5 @@
 import { deleteUser } from '../../controllers/user/deleteUser.Controller.js';
-import Joi from 'joi';
+import { deleteUserParams, deleteUserResponse } from './schemas/deleteUser.Schema.js';
 
 const deleteUserRoute = {
     method: 'DELETE',
@@ -9,27 +9,12 @@ const deleteUserRoute = {
         tags: ['api', 'users'],
         auth: 'jwt',
         validate: {
-            params: Joi.object({
-                id: Joi.string().required().description('the user id')
-            })
+            params: deleteUserParams
         },
         plugins: {
             'hapi-swagger': {
                 payloadType: 'json',
-                responses: {
-                    200: {
-                        description: 'User deleted',
-                        schema: Joi.object({
-                            message: Joi.string().example('User deleted')
-                        })
-                    },
-                    404: {
-                        description: 'User not found'
-                    },
-                    500: {
-                        description: 'Server error'
-                    }
-                }
+                responses: deleteUserResponse
             }
         }
     },

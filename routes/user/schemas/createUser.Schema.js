@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const userSchema = Joi.object({
+export const createUserPayload = Joi.object({
   firstName: Joi.string().max(120).required(),
   lastName: Joi.string().max(120).required(),
   companyName: Joi.string().max(120).required(),
@@ -13,4 +13,15 @@ const userSchema = Joi.object({
     .required()
 });
 
-export default userSchema;
+export const createUserResponse = {
+  201: {
+    description: 'User created',
+    schema: createUserPayload,
+  },
+  400: {
+    description: 'Validation or duplicate email error'
+  },
+  500: {
+    description: 'Server error'
+  }
+};

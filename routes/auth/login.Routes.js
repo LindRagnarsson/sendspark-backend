@@ -1,6 +1,5 @@
 import { login } from '../../controllers/auth/login.Controller.js';
-import loginSchema from './schemas/loginSchema.js';
-import Joi from 'joi';
+import { loginPayload, loginResponse } from './schemas/login.Schema.js';
 
 const loginRoute = {
     method: 'POST',
@@ -9,25 +8,12 @@ const loginRoute = {
         description: 'User login - Get JWT token',
         notes: 'Authenticate user and receive JWT token. Use this token in Authorization header for protected endpoints like /users/update-password',
         tags: ['api', 'auth'],
-        validate: { payload: loginSchema },
+        validate: { payload: loginPayload },
         auth: false,
         plugins: {
             'hapi-swagger': {
                 payloadType: 'json',
-                responses: {
-                    200: {
-                        description: 'Login successful - Returns JWT token',
-                        schema: Joi.object({
-                            token: Joi.string().example('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...')
-                        })
-                    },
-                    401: {
-                        description: 'Invalid email or password'
-                    },
-                    500: {
-                        description: 'Server error'
-                    }
-                },
+                responses: loginResponse,
                 examples: {
                     'application/json': {
                         workEmail: 'usuario@ejemplo.com',

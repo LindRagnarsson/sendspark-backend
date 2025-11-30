@@ -1,5 +1,5 @@
 import { listUsers } from '../../controllers/user/listUsers.Controller.js';
-import Joi from 'joi';
+import { listUsersQuery, listUsersResponse } from './schemas/listUsers.Schema.js';
 
 const listUsersRoute = {
     method: 'GET',
@@ -9,25 +9,13 @@ const listUsersRoute = {
         notes: 'Requires JWT. Use ?page=1&limit=50',
         tags: ['api', 'users'],
         auth: 'jwt',
+        validate: {
+            query: listUsersQuery
+        },
         plugins: {
             'hapi-swagger': {
                 payloadType: 'json',
-                responses: {
-                    200: {
-                        description: 'List of users',
-                        schema: Joi.object({
-                            users: Joi.array().items(Joi.object()).label('Users'),
-                            pagination: Joi.object({
-                                total: Joi.number(),
-                                page: Joi.number(),
-                                pages: Joi.number()
-                            }).label('Pagination')
-                        })
-                    },
-                    500: {
-                        description: 'Server error'
-                    }
-                }
+                responses: listUsersResponse
             }
         }
     },

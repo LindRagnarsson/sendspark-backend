@@ -1,6 +1,5 @@
 import { updateUser } from '../../controllers/user/updateUser.Controller.js';
-import updateUserSchema from './schemas/updateUserSchema.js';
-import Joi from 'joi';
+import { updateUserParams, updateUserPayload, updateUserResponse } from './schemas/updateUser.Schema.js';
 
 const updateUserRoute = {
     method: 'PUT',
@@ -10,28 +9,13 @@ const updateUserRoute = {
         tags: ['api', 'users'],
         auth: 'jwt',
         validate: {
-            params: Joi.object({
-                id: Joi.string().required().description('the user id')
-            }),
-            payload: updateUserSchema
+            params: updateUserParams,
+            payload: updateUserPayload
         },
         plugins: {
             'hapi-swagger': {
                 payloadType: 'json',
-                responses: {
-                    200: {
-                        description: 'User updated',
-                        schema: Joi.object({
-                            user: Joi.object().label('User')
-                        })
-                    },
-                    404: {
-                        description: 'User not found'
-                    },
-                    500: {
-                        description: 'Server error'
-                    }
-                }
+                responses: updateUserResponse
             }
         }
     },
